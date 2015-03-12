@@ -9,9 +9,11 @@
             </li>
         </ul>
         <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button>
+        <button id="createButton" ng-click="createNote()" class="btn btn-info pull-right">Create Note</button>
         <div ng-show="user" class="welcome">
             <span>Welcome, {{ user.email }}!</span>
             <a ng-click="logout()">Logout</a>
         </div>
     </div>
 </nav>
+

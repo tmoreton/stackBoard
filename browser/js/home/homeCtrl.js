@@ -1,4 +1,6 @@
 'use strict';
+var socket = io.connect();
+
 app.config(function ($stateProvider) {
     $stateProvider.state('home', {
         url: '/',
@@ -7,43 +9,51 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('MainCtrl', function($scope, socketFactory){
+app.controller('MainCtrl', function($scope) {
   $scope.notes = [];
 
-  //Incoming
-  socket.on('onNoteCreated', function(note){
-    $scope.notes.push(note);
+  // Incoming
+  socket.on('onNoteCreated', function(data) {
+    $scope.$apply( function () {
+      $scope.notes.push(data);
+    });
   });
 
-  socket.on('onNoteDeleted', function(note){
-    $scope.handleDeletedNote(note.id);
+  socket.on('onNoteDeleted', function(data) {
+    $scope.$apply( function () {
+      $scope.handleDeletedNoted(data.id);
+    });
   });
 
-  //Outgoing
+  // Outgoing
   $scope.createNote = function() {
+    console.log("createNote called");
     var note = {
       id: new Date().getTime(),
-      title: "",
-      body: ""
+      title: 'New Note',
+      body: 'Pending'
     };
 
     $scope.notes.push(note);
-    socketFactory.emit('createNote', note);
+    socket.emit('createNote', note);
   };
 
-  $scope.deleteNote = function(id){
-    $scope.handleDeletedNote(id);
-    socketFactory.emit('deleteNote', {id:id})
+  $scope.deleteNote = function(id) {
+    $scope.handleDeletedNoted(id);
+
+    socket.emit('deleteNote', {id: id});
   };
 
-  $scope.handleDeletedNote = function(id){
-    var oldNotes = $scope.notes;
+  $scope.handleDeletedNoted = function(id) {
+    var oldNotes = $scope.notes,
     newNotes = [];
 
-    oldNotes.forEach(function(note){
+    angular.forEach(oldNotes, function(note) {
       if(note.id !== id) newNotes.push(note);
     });
 
     $scope.notes = newNotes;
   }
-})
+});
+
+

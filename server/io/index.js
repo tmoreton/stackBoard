@@ -9,12 +9,15 @@ module.exports = function (server) {
     io = socketio(server);
 
     io.on('connection', function (socket) {
+        console.log("socket is here!");
         // Now have access to socket, wowzers!
         socket.on('createNote', function(data) {
+            console.log("socket hears createNote was called");
             socket.broadcast.emit('onNoteCreated', data);
         });
 
         socket.on('updateNote', function(data) {
+            console.log("updating note");
             socket.broadcast.emit('onNoteUpdated', data);
         });
 
