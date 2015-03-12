@@ -1,0 +1,13 @@
+{
+  "sections": [
+    "Introduction"
+  ],
+  "videos": [
+    {
+      "name": "Shiny New Generator",
+      "youtubeID": "mZ7636ovEts",
+      "section": "Introduction",
+      "order": 1
+    }
+  ]
+}

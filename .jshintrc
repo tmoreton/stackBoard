@@ -1,0 +1,23 @@
+{
+  "bitwise" : true,
+  "camelcase" : false,
+  "eqeqeq" : true,
+  "indent" : 4,
+  "node" : true,
+  "latedef" : true,
+  "newcap" : true,
+  "noarg" : true,
+  "nonbsp" : true,
+  "nonew" : true,
+  "strict" : false,
+  "trailing" : true,
+  "undef" : true,
+  "browser": true,
+  "laxbreak": true,
+  "globals" : {
+    "angular" : true,
+    "app": true,
+    "io": true,
+    "_": true
+  }
+}
