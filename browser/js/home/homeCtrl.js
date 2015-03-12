@@ -25,6 +25,12 @@ app.controller('MainCtrl', function($scope) {
     });
   });
 
+  //moved this from the UpdateCtrl
+  $scope.updateNote = function(note) {
+        console.log('note edited... can you hear it socket?');
+        socket.emit('updateNote', note);
+      };
+
   // Outgoing
   $scope.createNote = function() {
     console.log("createNote called");
@@ -39,6 +45,7 @@ app.controller('MainCtrl', function($scope) {
   };
 
   $scope.deleteNote = function(id) {
+    console.log('note deleted... socket controller')
     $scope.handleDeletedNoted(id);
 
     socket.emit('deleteNote', {id: id});

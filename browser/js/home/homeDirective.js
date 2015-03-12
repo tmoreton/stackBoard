@@ -45,7 +45,20 @@ app.directive('stickyNote', function() {
       element.hide().fadeIn();
     };
 
-   var controller = function($scope) {
+   
+
+  return {
+    restrict: 'A',
+    link: linker,
+    controller: 'UpdateCtrl',
+    scope: {
+      note: '=',
+      // ondelete: '&'
+    }
+  };
+});
+
+app.controller('UpdateCtrl', function($scope) {
       // Incoming
       socket.on('onNoteUpdated', function(data) {
         console.log('note edited... socket listening');
@@ -59,51 +72,15 @@ app.directive('stickyNote', function() {
       });
 
       // Outgoing
-      $scope.updateNote = function(note) {
-        console.log('note edited... can you hear it socket?');
-        socket.emit('updateNote', note);
-      };
+      // $scope.updateNote = function(note) {
+      //   console.log('note edited... can you hear it socket?');
+      //   socket.emit('updateNote', note);
+      // };
 
-      $scope.deleteNote = function(id) {
-        $scope.ondelete({
-          id: id
-        });
-      };
-    };
-
-  return {
-    restrict: 'A',
-    link: linker,
-    controller: controller,
-    scope: {
-      note: '=',
-      ondelete: '&'
-    }
-  };
-});
-
-// app.controller('UpdateCtrl', function($scope) {
-//       // Incoming
-//       socket.on('onNoteUpdated', function(data) {
-//         console.log('note edited... socket listening');
-//         // Update if the same note
-//         $scope.$apply( function () {
-//           if(data.id == $scope.note.id) {
-//             $scope.note.title = data.title;
-//             $scope.note.body = data.body;
-//           }
-//         });       
-//       });
-
-//       // Outgoing
-//       $scope.updateNote = function(note) {
-//         console.log('note edited... can you hear it socket?');
-//         socket.emit('updateNote', note);
-//       };
-
-//       $scope.deleteNote = function(id) {
-//         $scope.ondelete({
-//           id: id
-//         });
-//       };
-//   });
+      // $scope.deleteNote = function(id) {
+      //   console.log('note deleted... socket directive')
+      //   $scope.ondelete({
+      //     id: id
+      //   });
+      // };
+  });
