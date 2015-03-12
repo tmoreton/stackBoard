@@ -2,7 +2,6 @@
 #home {
   fullstack-logo {
     padding-top: 30px;
-    width: 150px;
     margin: 0 auto;
   }
   h1 {
@@ -29,5 +28,12 @@
 	border: none;
 	display: block;
 }
+
+canvas {
+  background-color: #faebd7;
+  position: absolute;
+  z-index: -1;
+}
+
 
 

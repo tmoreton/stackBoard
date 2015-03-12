@@ -28,6 +28,12 @@ module.exports = function (server) {
         socket.on('moveNote', function(data){
             socket.broadcast.emit('onNoteMoved', data);
         });
+
+        //track drawing movement
+        socket.on('mousemove', function(data) {
+            console.log("mousemove");
+            socket.broadcast.emit('moving', data);
+        });
     });
 
 };
