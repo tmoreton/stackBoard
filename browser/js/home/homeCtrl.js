@@ -33,7 +33,7 @@ app.controller('MainCtrl', function($scope) {
 
   // Outgoing
   $scope.createNote = function() {
-    console.log("createNote called");
+    // console.log("createNote called");
     var note = {
       id: new Date().getTime(),
       title: 'New Note',
@@ -45,7 +45,7 @@ app.controller('MainCtrl', function($scope) {
   };
 
   $scope.deleteNote = function(id) {
-    console.log('note deleted... socket controller')
+    // console.log('note deleted... socket controller')
     $scope.handleDeletedNoted(id);
 
     socket.emit('deleteNote', {id: id});
@@ -61,6 +61,40 @@ app.controller('MainCtrl', function($scope) {
 
     $scope.notes = newNotes;
   }
+
+  // filepicker.setKey("Af0l2C4KySEqLSsxUxWTjz");
+
+  // $scope.filepicker = function(){
+  //   filepicker.pick(
+  //     {
+  //       mimetypes: ['image/*', 'text/plain'],
+  //       container: 'window',
+  //       services:['COMPUTER', 'FACEBOOK', 'GMAIL'],
+  //     },
+  //     function(Blob){
+  //       console.log("blob", JSON.stringify(Blob));
+  //       Blob
+  //     },
+  //     function(FPError){
+  //       console.log("fpe", FPError.toString());
+  //     }
+  //   );
+  // };
+
+  // var file = element.files[0];
+
+  // if (!file) {
+  //   return;
+  // }
+
+  // var reader = new FileReader();
+  // reader.onload = function () {
+  //     scope.picPreview = this.result;
+  //     scope.$apply();
+  //   }
+  //     reader.readAsDataURL(file);
+  // }
+
 });
 
 

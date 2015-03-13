@@ -84,7 +84,8 @@ app.directive("drawing", function(){
         // to
         ctx.lineTo(cX,cY);
         // color
-        ctx.strokeStyle = "#4bf";
+        ctx.strokeStyle = "#000";
+        ctx.lineWidth = 5;
         // draw it
         ctx.stroke();
       }

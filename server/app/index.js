@@ -26,3 +26,9 @@ app.get('/*', function (req, res) {
 app.use(function (err, req, res, next) {
     res.status(err.status).send(err.message);
 });
+
+// filepicker.setKey("Af0l2C4KySEqLSsxUxWTjz");
+//   filepicker.pickAndStore({mimetype:"image/*"},{},
+//     function(InkBlobs){
+//       console.log(JSON.stringify(InkBlobs));
+//   });
