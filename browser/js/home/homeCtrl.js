@@ -92,8 +92,8 @@ app.controller('MainCtrl', function($scope) {
   //     scope.picPreview = this.result;
   //     scope.$apply();
   //   }
-  //     reader.readAsDataURL(file);
-  // }
+  // reader.readAsDataURL(file);
+
 
 });
 

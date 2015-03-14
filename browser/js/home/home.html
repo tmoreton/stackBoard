@@ -1,17 +1,37 @@
 <section id="home">
 	<canvas drawing></canvas>
 
-	<button id="createButton" ng-click="createNote()" class="btn btn-info pull-right">Create Note</button>
+<!-- 	<button id="createButton" ng-click="createNote()" class="btn btn-info pull-right">Create Note</button>
+ -->
+ <i class="fa fa-3x fa-comment pull-right" ng-click="createNote()"></i>
+
 	<div sticky-note ng-repeat="note in notes" note="note" class="alert alert-block sticky-note">
 		<button type="button" class="close" ng-click="deleteNote(note.id)">&times;</button>
 		<input ng-model="note.title" ng-change="updateNote(note)" type="text" class="title" >
 		<textarea ng-model="note.body" ng-change="updateNote(note)" class="body">{{note.body}}</textarea>
 	</div>
+
+<!-- css sticket note -->
+  <div class="quote-container" sticky-note ng-repeat="note in notes" note="note">
+    <button type="button" class="close" ng-click="deleteNote(note.id)">&times;</button>
+    <i class="pin"></i>
+
+
+
+    <div class="note yellow">
+    <input ng-model="note.title" ng-change="updateNote(note)" type="text" class="title" >
+    <textarea ng-model="note.body" ng-change="updateNote(note)" class="body">{{note.body}}</textarea>
+    </div>
+  </div>
+
+
 <!-- <input type="filepicker" data-fp-apikey="Af0l2C4KySEqLSsxUxWTjz" data-fp-mimetypes="image/*" data-fp-container="modal" data-fp-services="COMPUTER,FACEBOOK,FLICKR,IMAGE_SEARCH,URL,WEBCAM" onchange="alert(event.fpfile.url)">
- -->
-<!--   <input type="filepicker-dragdrop" data-fp-multiple="true"/>-->
-<!-- <button ng-click='filepicker()'></button>
- -->
+
+   <input type="filepicker-dragdrop" data-fp-multiple="true"/>
+<button ng-click='filepicker()'></button> -->
+
+
+
 <!--   <div class="file-upload">
     <button class="cancel" ng-if="picPreview" ng-click="cancelPic()">X</button>
     <img class="camera" src="assets/images/noun_476_cc.png" ng-click="uploadPic()">
