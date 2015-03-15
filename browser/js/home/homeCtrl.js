@@ -62,24 +62,29 @@ app.controller('MainCtrl', function($scope) {
     $scope.notes = newNotes;
   }
 
-  // filepicker.setKey("Af0l2C4KySEqLSsxUxWTjz");
+  filepicker.setKey("Af0l2C4KySEqLSsxUxWTjz");
 
-  // $scope.filepicker = function(){
-  //   filepicker.pick(
-  //     {
-  //       mimetypes: ['image/*', 'text/plain'],
-  //       container: 'window',
-  //       services:['COMPUTER', 'FACEBOOK', 'GMAIL'],
-  //     },
-  //     function(Blob){
-  //       console.log("blob", JSON.stringify(Blob));
-  //       Blob
-  //     },
-  //     function(FPError){
-  //       console.log("fpe", FPError.toString());
-  //     }
-  //   );
-  // };
+  $scope.images = [];
+
+  $scope.filepicker = function(){
+    filepicker.pick(
+      {
+        mimetypes: ['image/*', 'text/plain'],
+        container: 'window',
+        services:['COMPUTER', 'FACEBOOK', 'GMAIL'],
+      },
+      function(Blob){
+        console.log("blob", JSON.stringify(Blob));
+        $scope.images.push({ id: new Date().getTime(), url: Blob.url});
+        console.log($scope.images);
+        $scope.$digest();
+      },
+      function(FPError){
+        console.log("fpe", FPError.toString());
+      }
+    )};
+
+
 
   // var file = element.files[0];
 
