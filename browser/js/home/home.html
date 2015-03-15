@@ -1,5 +1,5 @@
 <section id="home">
-	<canvas drawing></canvas>
+	
 
 <!-- 	<button id="createButton" ng-click="createNote()" class="btn btn-info pull-right">Create Note</button>
  -->
@@ -13,7 +13,7 @@
 	</div> -->
 
 <!-- css sticket note -->
-  <div class="quote-container" sticky-note ng-repeat="note in notes" note="note">
+  <div class="quote-container" sticky-note ng-repeat="note in notes | filter: { type: 'note' }" note="note">
     <button type="button" class="close" ng-click="deleteNote(note.id)">&times;</button>
     <i class="pin"></i>
 
@@ -32,8 +32,9 @@
 
 
 <div><p>images!</p></div>
-<div sticky-note ng-repeat="image in images">
-  <img class="images" src="{{image.url}}"></img>
+<div ng-show="filteredImages.length" class="polaroid" sticky-note ng-repeat="image in filteredImages = (notes | filter: { type: 'image' })">
+  <img src="{{image.url}}"></img>
+  <pre>{{filteredImages}}</pre>
 </div>
 
 

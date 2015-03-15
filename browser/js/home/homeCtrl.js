@@ -16,6 +16,7 @@ app.controller('MainCtrl', function($scope) {
   socket.on('onNoteCreated', function(data) {
     $scope.$apply( function () {
       $scope.notes.push(data);
+      console.log($scope.notes);
     });
   });
 
@@ -36,6 +37,7 @@ app.controller('MainCtrl', function($scope) {
     // console.log("createNote called");
     var note = {
       id: new Date().getTime(),
+      type: "note",
       title: 'New Note',
       body: 'Pending'
     };
@@ -64,7 +66,7 @@ app.controller('MainCtrl', function($scope) {
 
   filepicker.setKey("Af0l2C4KySEqLSsxUxWTjz");
 
-  $scope.images = [];
+  // $scope.images = [];
 
   $scope.filepicker = function(){
     filepicker.pick(
@@ -75,9 +77,13 @@ app.controller('MainCtrl', function($scope) {
       },
       function(Blob){
         console.log("blob", JSON.stringify(Blob));
-        $scope.images.push({ id: new Date().getTime(), url: Blob.url});
-        console.log($scope.images);
-        $scope.$digest();
+        //pushin into notes for now to check dragging functionality. need to rename
+        $scope.$apply( function () {
+          var pic = { id: new Date().getTime(), url: Blob.url, type: "image"}
+          $scope.notes.push(pic);
+          console.log($scope.notes);
+        });
+        //$scope.$digest();
       },
       function(FPError){
         console.log("fpe", FPError.toString());
