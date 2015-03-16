@@ -1,8 +1,9 @@
 <section id="home">
 <h1>stackBoard</h1>
- <i class="fa fa-3x fa-paperclip pull-right" ng-click="createNote()"></i>
- <i class="fa fa-3x fa-picture-o pull-right" ng-click="createImage()"></i>
- <i class="fa fa-3x fa-arrow-left pull-right" ng-click="reset()"></i>
+  <div class="row"><i class="fa fa-3x fa-thumb-tack pull-right" ng-click="createNote()"></i></div>
+  <div class="row"><i class="fa fa-3x fa-picture-o pull-right" ng-click="createImage()"></i></div>
+  <div class="row"><i class="fa fa-3x fa-arrow-left pull-right" ng-click="reset()"></i></div>
+
 
 	<div sticky-note draggable-item ng-repeat="note in items | filter: { type: 'note' }" item="note" class="alert alert-block sticky-note sticky-textarea">
     <button type="button" class="close" ng-click="deleteItem(note.id)">&times;</button>
