@@ -1,7 +1,7 @@
 'use strict';
 var socket = io.connect();
 
-app.directive('stickyNote', function() {
+app.directive('draggableItem', function() {
   var linker = function(scope, element, attrs) {
       element.draggable({
         // start: function(event, ui) {
@@ -19,18 +19,21 @@ app.directive('stickyNote', function() {
         //  });
         // },
         stop: function(event, ui) {
-          socket.emit('moveNote', {
-            id: scope.note.id,
+          console.log("item", scope.item);
+          console.log("item id", scope.item.id);
+          socket.emit('moveItem', {
+            id: scope.item.id,
             x: ui.position.left,
             y: ui.position.top
           });
+
         }
       });
 
-      socket.on('onNoteMoved', function(data) {
-        // Update if the same note
+      socket.on('onItemMoved', function(data) {
+        // Update if the same item
         
-          if(data.id == scope.note.id) {
+          if(data.id == scope.item.id) {
             element.animate({
               left: data.x,
               top: data.y
@@ -52,7 +55,8 @@ app.directive('stickyNote', function() {
     link: linker,
     controller: 'UpdateCtrl',
     scope: {
-      note: '=',
+      //this was note before. may need to change back if this updatectrl breaks
+      item: '=',
       // ondelete: '&'
     }
   };
@@ -60,13 +64,13 @@ app.directive('stickyNote', function() {
 
 app.controller('UpdateCtrl', function($scope) {
       // Incoming
-      socket.on('onNoteUpdated', function(data) {
-        console.log('note edited... socket listening');
-        // Update if the same note
+      socket.on('onItemUpdated', function(data) {
+        console.log('item edited... socket listening');
+        // Update if the same item
         $scope.$apply( function () {
-          if(data.id == $scope.note.id) {
-            $scope.note.title = data.title;
-            $scope.note.body = data.body;
+          if(data.id == $scope.item.id) {
+            $scope.item.title = data.title;
+            $scope.item.body = data.body;
           }
         });       
       });
@@ -84,3 +88,5 @@ app.controller('UpdateCtrl', function($scope) {
       //   });
       // };
   });
+
+

@@ -11,22 +11,24 @@ module.exports = function (server) {
     io.on('connection', function (socket) {
         console.log("socket is here!");
         // Now have access to socket, wowzers!
-        socket.on('createNote', function(data) {
-            console.log("socket hears createNote was called");
-            socket.broadcast.emit('onNoteCreated', data);
+        socket.on('createItem', function(data) {
+            console.log("socket hears createItem was called");
+            socket.broadcast.emit('onItemCreated', data);
         });
 
-        socket.on('updateNote', function(data) {
-            console.log("updating note");
-            socket.broadcast.emit('onNoteUpdated', data);
+        socket.on('updateItem', function(data) {
+            console.log("updating Item");
+            socket.broadcast.emit('onItemUpdated', data);
         });
 
-        socket.on('deleteNote', function(data){
-            socket.broadcast.emit('onNoteDeleted', data);
+        socket.on('deleteItem', function(data){
+            console.log("updating Item");
+            socket.broadcast.emit('onItemDeleted', data);
         });
 
-        socket.on('moveNote', function(data){
-            socket.broadcast.emit('onNoteMoved', data);
+        socket.on('moveItem', function(data){
+            console.log("Item moving");
+            socket.broadcast.emit('onItemMoved', data);
         });
 
         //track drawing movement
