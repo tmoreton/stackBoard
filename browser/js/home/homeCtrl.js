@@ -12,6 +12,9 @@ app.config(function ($stateProvider) {
 app.controller('MainCtrl', function($scope) {
   $scope.items = [];
 
+  $scope.colorChange = {};
+  $scope.boardReset = {};
+
   // Incoming
   socket.on('onItemCreated', function(data) {
     $scope.$apply( function () {

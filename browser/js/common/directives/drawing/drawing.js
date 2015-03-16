@@ -1,10 +1,13 @@
 'use strict';
 var socket = io.connect();
+var color;
+var elem;
 
 app.directive("drawing", function(){
   return {
     restrict: "A",
     link: function(scope, element){
+      elem = element;
       var ctx = element[0].getContext('2d');
       ctx.canvas.width  = window.innerWidth;
       ctx.canvas.height = window.innerHeight;
@@ -73,22 +76,35 @@ app.directive("drawing", function(){
         drawing = false;
       });
 
-      // canvas reset
-      function reset(){
-       element[0].width = element[0].width;
-      }
-
       function draw(lX, lY, cX, cY){
+        console.log("color", color);
         // line from
         ctx.moveTo(lX,lY);
         // to
         ctx.lineTo(cX,cY);
         // color
-        ctx.strokeStyle = "#000";
+        ctx.strokeStyle = color;
         ctx.lineWidth = 5;
         // draw it
         ctx.stroke();
       }
-    }
+    },
+    controller: "DrawCtrl"
   };
 });
+
+app.controller("DrawCtrl", function($scope) {
+  $scope.reset = function () {
+       elem[0].width = elem[0].width;
+      }
+
+      color = "#ccc";
+
+      $scope.changeColor = function () {
+        console.log("change color");
+        
+          color = "#ff69b4";
+          console.log("new color", color);
+   
+      }
+})
