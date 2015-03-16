@@ -1,5 +1,8 @@
 @import url(http://fonts.googleapis.com/css?family=Gloria+Hallelujah);
-* { box-sizing:border-box; }
+
+body {
+  background: url('grid.png') top left repeat;
+}
 
 .sticky-textarea  {
   display: block;
@@ -39,9 +42,9 @@
 }
 
 canvas {
-  background-color: #faebd7;
+  background: transparent;
   position: absolute;
-  z-index: -1;
+  z-index: 0;
 }
 
 
