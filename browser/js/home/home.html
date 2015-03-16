@@ -1,18 +1,30 @@
 <section id="home">
+<h1>stackBoard</h1>
+  <div class="row"><i class="fa fa-3x fa-thumb-tack pull-right" ng-click="createNote()"></i></div>
+  <div class="row"><i class="fa fa-3x fa-picture-o pull-right" ng-click="createImage()"></i></div>
+  <div class="row"><i class="fa fa-3x fa-arrow-left pull-right" ng-click="reset()"></i></div>
 
- <i class="fa fa-3x fa-comment pull-right" ng-click="createNote()"></i>
- <i class="fa fa-3x fa-picture-o pull-right" ng-click="createImage()"></i>
 
 	<div sticky-note draggable-item ng-repeat="note in items | filter: { type: 'note' }" item="note" class="alert alert-block sticky-note sticky-textarea">
     <button type="button" class="close" ng-click="deleteItem(note.id)">&times;</button>
-		<input ng-model="note.title" ng-change="updateItem(note)" type="text" class="title" >
-		<textarea ng-model="note.body" ng-change="updateItem(note)" class="body">{{note.body}}</textarea>
+		<input ng-model="note.title" ng-change="updateItem(note)" type="text" class="title" placeholder="Title">
+		<textarea ng-model="note.body" ng-change="updateItem(note)" class="body" placeholder="Notes">{{note.body}}</textarea>
 	</div>
 
-<div ng-show="filteredImages.length" class="polaroid" draggable-item ng-repeat="image in filteredImages = (items | filter: { type: 'image' })" item="image">
-  <img src="{{image.url}}"></img>
-  <pre>{{filteredImages}}</pre>
-</div>
+  <div>
+    <div ng-show="filteredImages.length" class="polaroid" draggable-item ng-repeat="image in filteredImages = (items | filter: { type: 'image' })" item="image">
+      <button type="button" class="close" ng-click="deleteItem(image.id)">&times;</button>
+      <img src="{{image.url}}"></img>
+      <!-- <pre>{{filteredImages}}</pre> -->
+    </div>
+  </div>
+
+  <div class='chatbox'>
+    <ul id="messages"></ul>
+    <form class="chatform" action="">
+      <input class="chatinput" id="m" autocomplete="off" /><button>Send</button>
+    </form>
+  </div>
 
 <!--   <div class="file-upload">
     <button class="cancel" ng-if="picPreview" ng-click="cancelPic()">X</button>

@@ -36,6 +36,12 @@ module.exports = function (server) {
             console.log("mousemove");
             socket.broadcast.emit('moving', data);
         });
+
+        //chat box
+        socket.on('chat message', function(msg){
+            console.log("chat working");
+            io.emit('chat message', msg);
+        });
     });
 
 };
