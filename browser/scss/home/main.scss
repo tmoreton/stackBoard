@@ -1,18 +1,27 @@
+@import url(http://fonts.googleapis.com/css?family=Gloria+Hallelujah);
+* { box-sizing:border-box; }
 
-#home {
-  fullstack-logo {
-    padding-top: 30px;
-    margin: 0 auto;
-  }
-  h1 {
-    margin-top: 40px;
-    text-align: center;
-  }
+.sticky-textarea  {
+  display: block;
+  padding:25px 25px 40px;
+  margin:0 auto 20px auto;
+  font:20px 'Gloria Hallelujah', cursive;
+  line-height:1.5;
+  border:0;
+  border-radius:3px;
+  background: -webkit-linear-gradient(#F9EFAF, #F7E98D);
+  background: -moz-linear-gradient(#F9EFAF, #F7E98D);
+  background: -o-linear-gradient(#F9EFAF, #F7E98D);
+  background: -ms-linear-gradient(#F9EFAF, #F7E98D);
+  background: linear-gradient(#F9EFAF, #F7E98D);
+  box-shadow:0 4px 6px rgba(0,0,0,0.1);
+  overflow:hidden;
+  transition:box-shadow 0.5s ease;
+  font-smoothing:subpixel-antialiased;
 }
 
 .sticky-note {
 	position: absolute;
-	background: yellow;
 }
 
 .sticky-note .title {
@@ -36,4 +45,26 @@ canvas {
 }
 
 
+.polaroid {
+  position: relative;
+  width: 220px;
+}
 
+.polaroid img {
+  width: 200px;
+  border: 10px solid #fff;
+  border-bottom: 45px solid #fff;
+  -webkit-box-shadow: 3px 3px 3px #777;
+     -moz-box-shadow: 3px 3px 3px #777;
+          box-shadow: 3px 3px 3px #777;
+}
+
+// not using right now but could add a description to the pics
+.polaroid p {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  bottom: 0px;
+  font: 400 18px/1 'Kaushan Script', cursive;
+  color: #888;
+}

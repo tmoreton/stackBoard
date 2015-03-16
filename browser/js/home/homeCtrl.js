@@ -10,76 +10,88 @@ app.config(function ($stateProvider) {
 });
 
 app.controller('MainCtrl', function($scope) {
-  $scope.notes = [];
+  $scope.items = [];
 
   // Incoming
-  socket.on('onNoteCreated', function(data) {
+  socket.on('onItemCreated', function(data) {
     $scope.$apply( function () {
-      $scope.notes.push(data);
+      $scope.items.push(data);
+      console.log($scope.items);
     });
   });
 
-  socket.on('onNoteDeleted', function(data) {
+  socket.on('onItemDeleted', function(data) {
     $scope.$apply( function () {
-      $scope.handleDeletedNoted(data.id);
+      $scope.handleDeletedItem(data.id);
     });
   });
 
   //moved this from the UpdateCtrl
-  $scope.updateNote = function(note) {
-        console.log('note edited... can you hear it socket?');
-        socket.emit('updateNote', note);
+  $scope.updateItem = function(item) {
+        console.log('item edited... can you hear it socket?');
+        socket.emit('updateItem', item);
       };
 
   // Outgoing
   $scope.createNote = function() {
-    // console.log("createNote called");
-    var note = {
+    
+    var item = {
       id: new Date().getTime(),
-      title: 'New Note',
-      body: 'Pending'
+      type: "note",
+      // title: 'New Note',
+      // body: 'Pending'
     };
 
-    $scope.notes.push(note);
-    socket.emit('createNote', note);
+    $scope.items.push(item);
+    socket.emit('createItem', item);
   };
 
-  $scope.deleteNote = function(id) {
-    // console.log('note deleted... socket controller')
-    $scope.handleDeletedNoted(id);
+  $scope.deleteItem = function(id) {
+    console.log('item deleted... socket controller')
+    $scope.handleDeletedItem(id);
 
-    socket.emit('deleteNote', {id: id});
+    socket.emit('deleteItem', {id: id});
   };
 
-  $scope.handleDeletedNoted = function(id) {
-    var oldNotes = $scope.notes,
-    newNotes = [];
+  $scope.handleDeletedItem = function(id) {
+    var oldItems = $scope.items,
+    newItems = [];
 
-    angular.forEach(oldNotes, function(note) {
-      if(note.id !== id) newNotes.push(note);
+    angular.forEach(oldItems, function(item) {
+      if(item.id !== id) newItems.push(item);
     });
 
-    $scope.notes = newNotes;
+    $scope.items = newItems;
   }
 
-  // filepicker.setKey("Af0l2C4KySEqLSsxUxWTjz");
+  filepicker.setKey("Af0l2C4KySEqLSsxUxWTjz");
 
-  // $scope.filepicker = function(){
-  //   filepicker.pick(
-  //     {
-  //       mimetypes: ['image/*', 'text/plain'],
-  //       container: 'window',
-  //       services:['COMPUTER', 'FACEBOOK', 'GMAIL'],
-  //     },
-  //     function(Blob){
-  //       console.log("blob", JSON.stringify(Blob));
-  //       Blob
-  //     },
-  //     function(FPError){
-  //       console.log("fpe", FPError.toString());
-  //     }
-  //   );
-  // };
+  // $scope.images = [];
+
+  $scope.createImage = function(){
+    filepicker.pick(
+      {
+        mimetypes: ['image/*', 'text/plain'],
+        container: 'window',
+        services:['COMPUTER', 'FACEBOOK', 'GMAIL'],
+      },
+      function(Blob){
+        console.log("blob", JSON.stringify(Blob));
+        //pushin into notes for now to check dragging functionality. need to rename
+        $scope.$apply( function () {
+          var pic = { id: new Date().getTime(), url: Blob.url, type: "image"}
+          $scope.items.push(pic);
+          socket.emit('createItem', pic);
+          console.log($scope.items);
+        });
+        //$scope.$digest();
+      },
+      function(FPError){
+        console.log("fpe", FPError.toString());
+      }
+    )};
+
+
 
   // var file = element.files[0];
 
@@ -92,8 +104,8 @@ app.controller('MainCtrl', function($scope) {
   //     scope.picPreview = this.result;
   //     scope.$apply();
   //   }
-  //     reader.readAsDataURL(file);
-  // }
+  // reader.readAsDataURL(file);
+
 
 });
 
