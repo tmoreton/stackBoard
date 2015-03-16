@@ -32,14 +32,14 @@ app.directive('draggableItem', function() {
 
       socket.on('onItemMoved', function(data) {
         // Update if the same item
-        
+
           if(data.id == scope.item.id) {
             element.animate({
               left: data.x,
               top: data.y
             });
-          };  
-  
+          };
+
       });
 
       // Some DOM initiation to make it nice
@@ -48,7 +48,7 @@ app.directive('draggableItem', function() {
       element.hide().fadeIn();
     };
 
-   
+
 
   return {
     restrict: 'A',
@@ -72,7 +72,7 @@ app.controller('UpdateCtrl', function($scope) {
             $scope.item.title = data.title;
             $scope.item.body = data.body;
           }
-        });       
+        });
       });
 
       // Outgoing

@@ -1,42 +1,18 @@
 <section id="home">
-	
 
-<!-- 	<button id="createButton" ng-click="createNote()" class="btn btn-info pull-right">Create Note</button>
- -->
  <i class="fa fa-3x fa-comment pull-right" ng-click="createNote()"></i>
  <i class="fa fa-3x fa-picture-o pull-right" ng-click="createImage()"></i>
 
-	<!-- <div sticky-note ng-repeat="note in notes" note="note" class="alert alert-block sticky-note">
-		<button type="button" class="close" ng-click="deleteNote(note.id)">&times;</button>
-		<input ng-model="note.title" ng-change="updateNote(note)" type="text" class="title" >
-		<textarea ng-model="note.body" ng-change="updateNote(note)" class="body">{{note.body}}</textarea>
-	</div> -->
-
-<!-- css sticket note -->
-  <div class="quote-container" draggable-item ng-repeat="note in items | filter: { type: 'note' }" item="note">
+	<div sticky-note draggable-item ng-repeat="note in items | filter: { type: 'note' }" item="note" class="alert alert-block sticky-note sticky-textarea">
     <button type="button" class="close" ng-click="deleteItem(note.id)">&times;</button>
-    <i class="pin"></i>
-
-
-
-    <div class="note yellow">
-    <input ng-model="note.title" ng-change="updateItem(note)" type="text" class="title" >
-    <textarea ng-model="note.body" ng-change="updateItem(note)" class="body">{{note.body}}</textarea>
-    </div>
-  </div>
-
-
-<!-- <input type="filepicker" data-fp-apikey="Af0l2C4KySEqLSsxUxWTjz" data-fp-mimetypes="image/*" data-fp-container="modal" data-fp-services="COMPUTER,FACEBOOK,FLICKR,IMAGE_SEARCH,URL,WEBCAM" onchange="alert(event.fpfile.url)">
-
-   <input type="filepicker-dragdrop" data-fp-multiple="true"/> -->
-
-
+		<input ng-model="note.title" ng-change="updateItem(note)" type="text" class="title" >
+		<textarea ng-model="note.body" ng-change="updateItem(note)" class="body">{{note.body}}</textarea>
+	</div>
 
 <div ng-show="filteredImages.length" class="polaroid" draggable-item ng-repeat="image in filteredImages = (items | filter: { type: 'image' })" item="image">
   <img src="{{image.url}}"></img>
   <pre>{{filteredImages}}</pre>
 </div>
-
 
 <!--   <div class="file-upload">
     <button class="cancel" ng-if="picPreview" ng-click="cancelPic()">X</button>
