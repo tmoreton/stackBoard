@@ -1,5 +1,8 @@
 'use strict';
 var socket = io.connect();
+//instead of closing over color and elem could refactor:
+//use factory to create access between directive and controller. event emitting. scope events
+//rootScope broadcast and emit
 var color;
 var elem;
 
@@ -98,12 +101,19 @@ app.controller("DrawCtrl", function($scope) {
        elem[0].width = elem[0].width;
       }
 
-      color = "#ccc";
+      function getRandomColor() {
+          var letters = '0123456789ABCDEF'.split('');
+          var newColor = '#';
+          for (var i = 0; i < 6; i++ ) {
+              newColor += letters[Math.floor(Math.random() * 16)];
+          }
+          return newColor;
+      }
 
       $scope.changeColor = function () {
         console.log("change color");
-        
-          color = "#ff69b4";
+          
+          color = getRandomColor();
           console.log("new color", color);
    
       }
