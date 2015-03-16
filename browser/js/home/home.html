@@ -1,7 +1,8 @@
 <section id="home">
-
- <i class="fa fa-3x fa-comment pull-right" ng-click="createNote()"></i>
+<h1>stackBoard</h1>
+ <i class="fa fa-3x fa-paperclip pull-right" ng-click="createNote()"></i>
  <i class="fa fa-3x fa-picture-o pull-right" ng-click="createImage()"></i>
+ <i class="fa fa-3x fa-arrow-left pull-right" ng-click="reset()"></i>
 
 	<div sticky-note draggable-item ng-repeat="note in items | filter: { type: 'note' }" item="note" class="alert alert-block sticky-note sticky-textarea">
     <button type="button" class="close" ng-click="deleteItem(note.id)">&times;</button>
@@ -15,6 +16,13 @@
       <img src="{{image.url}}"></img>
       <!-- <pre>{{filteredImages}}</pre> -->
     </div>
+  </div>
+
+  <div class='chatbox'>
+    <ul id="messages"></ul>
+    <form class="chatform" action="">
+      <input class="chatinput" id="m" autocomplete="off" /><button>Send</button>
+    </form>
   </div>
 
 <!--   <div class="file-upload">

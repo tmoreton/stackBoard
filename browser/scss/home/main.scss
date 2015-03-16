@@ -4,6 +4,12 @@ body {
   background: url('grid.png') top left repeat;
 }
 
+h1 {
+  font-family: 'Syncopate', sans-serif;
+  font-weight: 400;
+  text-align: center
+}
+
 .sticky-textarea  {
   display: block;
   padding:25px 25px 40px;
@@ -71,3 +77,16 @@ canvas {
   font: 400 18px/1 'Kaushan Script', cursive;
   color: #888;
 }
+
+.chatbox{
+  position:fixed;
+  bottom: 0;
+  right: 0;
+  max-height:300px;
+  overflow: scroll;
+  background: white;
+}
+
+#messages { list-style-type: none; margin: 0; padding: 0; }
+#messages li { padding: 5px 10px; }
+#messages li:nth-child(odd) { background: #eee; }

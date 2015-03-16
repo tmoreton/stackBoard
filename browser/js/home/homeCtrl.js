@@ -26,6 +26,16 @@ app.controller('MainCtrl', function($scope) {
     });
   });
 
+  $('form').submit(function(){
+    socket.emit('chat message', $('#m').val());
+    $('#m').val('');
+    return false;
+  });
+
+  socket.on('chat message', function(msg){
+    $('#messages').append($('<li>').text(msg));
+  });
+
   //moved this from the UpdateCtrl
   $scope.updateItem = function(item) {
         console.log('item edited... can you hear it socket?');
@@ -34,7 +44,7 @@ app.controller('MainCtrl', function($scope) {
 
   // Outgoing
   $scope.createNote = function() {
-    
+
     var item = {
       id: new Date().getTime(),
       type: "note",
@@ -65,8 +75,6 @@ app.controller('MainCtrl', function($scope) {
   }
 
   filepicker.setKey("Af0l2C4KySEqLSsxUxWTjz");
-
-  // $scope.images = [];
 
   $scope.createImage = function(){
     filepicker.pick(
