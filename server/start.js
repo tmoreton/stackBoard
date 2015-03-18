@@ -24,8 +24,8 @@ var startServer = function () {
 
 };
 
-startDb.then(createApplication).then(startServer).catch(function (err) {
-    console.error('Initialization error:', chalk.red(err.message));
-});
+// startDb.then(createApplication).then(startServer).catch(function (err) {
+//     console.error('Initialization error:', chalk.red(err.message));
+// });
 
 
