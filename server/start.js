@@ -6,7 +6,7 @@ var server = require('http').createServer();
 
 // Requires in ./db/index.js -- which returns a promise that represents
 // mongoose establishing a connection to a MongoDB database.
-var startDb = require('./db');
+// var startDb = require('./db');
 
 var createApplication = function () {
     var app = require('./app');
@@ -28,4 +28,5 @@ var startServer = function () {
 //     console.error('Initialization error:', chalk.red(err.message));
 // });
 
-
+createApplication();
+startServer();

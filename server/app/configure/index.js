@@ -12,5 +12,5 @@ module.exports = function (app) {
     require('./parsing-middleware')(app);
 
     app.use(app.getValue('log'));
-    require('./authentication')(app);
+    // require('./authentication')(app);
 };
