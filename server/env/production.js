@@ -1,19 +1,19 @@
 module.exports = {
-    "DATABASE_URI": process.env.MONGOLAB_URI,
-    "SESSION_SECRET": process.env.SESSION_SECRET,
-    "TWITTER": {
-        "consumerKey": process.env.TWITTER_CONSUMER_KEY,
-        "consumerSecret": process.env.TWITTER_CONSUMER_SECRET,
-        "callbackUrl": process.env.TWITTER_CALLBACK
-    },
-    "FACEBOOK": {
-        "clientID": process.env.FACEBOOK_APP_ID,
-        "clientSecret": process.env.FACEBOOK_CLIENT_SECRET,
-        "callbackURL": process.env.FACEBOOK_CALLBACK_URL
-    },
-    "GOOGLE": {
-        "clientID": process.env.GOOGLE_CLIENT_ID,
-        "clientSecret": process.env.GOOGLE_CLIENT_SECRET,
-        "callbackURL": process.env.CALLBACK_URL
-    }
+  "DATABASE_URI": "mongodb://localhost:27017/my-app",
+  "SESSION_SECRET": "Optimus Prime is my real dad",
+  "TWITTER": {
+    "consumerKey": "INSERT_TWITTER_CONSUMER_KEY_HERE",
+    "consumerSecret": "INSERT_TWITTER_CONSUMER_SECRET_HERE",
+    "callbackUrl": "INSERT_TWITTER_CALLBACK_HERE"
+  },
+  "FACEBOOK": {
+    "clientID": "INSERT_FACEBOOK_CLIENTID_HERE",
+    "clientSecret": "INSERT_FACEBOOK_CLIENT_SECRET_HERE",
+    "callbackURL": "INSERT_FACEBOOK_CALLBACK_HERE"
+  },
+  "GOOGLE": {
+    "clientID": "INSERT_GOOGLE_CLIENTID_HERE",
+    "clientSecret": "INSERT_GOOGLE_CLIENT_SECRET_HERE",
+    "callbackURL": "INSERT_GOOGLE_CALLBACK_HERE"
+  }
 };
