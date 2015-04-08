@@ -3,7 +3,7 @@ var socket = io.connect();
 //instead of closing over color and elem could refactor:
 //use factory to create access between directive and controller. event emitting. scope events
 //rootScope broadcast and emit
-var color;
+var color = "#000";
 var elem;
 
 app.directive("drawing", function(){
@@ -56,13 +56,14 @@ app.directive("drawing", function(){
               currentY = event.layerY - event.currentTarget.offsetTop;
             }
 
-            draw(lastX, lastY, currentX, currentY);
+            draw(lastX, lastY, currentX, currentY, color);
 
             socket.emit('mousemove', {
               lastX: lastX,
               lastY: lastY,
               currentX: currentX,
-              currentY: currentY
+              currentY: currentY,
+              color: color
             });
             // set current coordinates to last one
               lastX = currentX;
@@ -71,7 +72,8 @@ app.directive("drawing", function(){
       });
 
       socket.on('moving', function (data) {
-        draw(data.lastX, data.lastY, data.currentX, data.currentY);
+        console.log("drawing", color);
+        draw(data.lastX, data.lastY, data.currentX, data.currentY, data.color);
       });
 
       element.bind('mouseup', function(event){
@@ -79,14 +81,14 @@ app.directive("drawing", function(){
         drawing = false;
       });
 
-      function draw(lX, lY, cX, cY){
-        console.log("color", color);
+      function draw(lX, lY, cX, cY, myColor){
+        console.log("color", myColor);
         // line from
         ctx.moveTo(lX,lY);
         // to
         ctx.lineTo(cX,cY);
         // color
-        ctx.strokeStyle = color;
+        ctx.strokeStyle = myColor;
         ctx.lineWidth = 5;
         // draw it
         ctx.stroke();
