@@ -38,8 +38,8 @@ module.exports = function (server) {
         });
 
         //chat box
-        socket.on('chat message', function(msg){
-            console.log("chat working");
+        socket.on('send message', function(msg){
+            console.log("new chat message");
             io.emit('chat message', msg);
         });
     });

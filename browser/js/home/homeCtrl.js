@@ -1,5 +1,4 @@
 'use strict';
-var socket = io.connect();
 
 app.config(function ($stateProvider) {
     $stateProvider.state('home', {
@@ -8,8 +7,8 @@ app.config(function ($stateProvider) {
         templateUrl: 'js/home/home.html'
     });
 });
-
-app.controller('MainCtrl', function($scope) {
+ 
+app.controller('MainCtrl', function($scope, socket) {
   $scope.items = [];
 
   $scope.colorChange = {};
@@ -17,26 +16,12 @@ app.controller('MainCtrl', function($scope) {
 
   // Incoming
   socket.on('onItemCreated', function(data) {
-    $scope.$apply( function () {
       $scope.items.push(data);
       console.log($scope.items);
-    });
   });
 
   socket.on('onItemDeleted', function(data) {
-    $scope.$apply( function () {
       $scope.handleDeletedItem(data.id);
-    });
-  });
-
-  $('form').submit(function(){
-    socket.emit('chat message', $('#m').val());
-    $('#m').val('');
-    return false;
-  });
-
-  socket.on('chat message', function(msg){
-    $('#messages').append($('<li>').text(msg));
   });
 
   //moved this from the UpdateCtrl
@@ -88,35 +73,17 @@ app.controller('MainCtrl', function($scope) {
       },
       function(Blob){
         console.log("blob", JSON.stringify(Blob));
-        //pushin into notes for now to check dragging functionality. need to rename
         $scope.$apply( function () {
           var pic = { id: new Date().getTime(), url: Blob.url, type: "image"}
           $scope.items.push(pic);
           socket.emit('createItem', pic);
           console.log($scope.items);
         });
-        //$scope.$digest();
       },
       function(FPError){
         console.log("fpe", FPError.toString());
       }
     )};
-
-
-
-  // var file = element.files[0];
-
-  // if (!file) {
-  //   return;
-  // }
-
-  // var reader = new FileReader();
-  // reader.onload = function () {
-  //     scope.picPreview = this.result;
-  //     scope.$apply();
-  //   }
-  // reader.readAsDataURL(file);
-
 
 });
 
