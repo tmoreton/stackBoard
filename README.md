@@ -1,7 +1,7 @@
 # stackBoard
 ![Badge of Honor](https://img.shields.io/badge/Built%20at-Fullstack-green.svg?style=flat-square)
 
-[stackboard.info] (http://stackboard.info)
+[StackBoard Example] (http://stackboard.herokuapp.com/ )
 
 Stackboard is a realtime collaboration board that uses websockets, HTML5 canvas and the Filepicker API.
 
